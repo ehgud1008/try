@@ -19,10 +19,34 @@
 	<context:annotation-config />
 	
 	<!-- java class를 spring bean으로 등록 -->
-	<context:component-scan base-package="main.src.controller" />
-	<context:component-scan base-package="main.src.service" />
-	<context:component-scan base-package="main.src.dao" />
+	<context:component-scan base-package="main.src.java.controller" />
+	<context:component-scan base-package="main.src.java.service" />
+	<context:component-scan base-package="main.src.java.dao" />
 	
+	
+	<bean id="dataSource"
+	      class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+	    <!-- MySQL 버전에 따라 driverClassName의 value값이 달라짐 아래 코드는 Mysql 8기준 -->
+	    <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
+	    <!-- MySQL 버전이 6인 경우 아래 코드 반영 -->
+	    <!-- <property name="driverClassName" value="com.mysql.cj.jdbc.Driver"></property> -->
+	    <!-- <property name="url" value="jdbc:oracle:thin:@54.179.238.118:3306/portfolio"/>
+	    <property name="username" value="root"/>
+	    <property name="password" value="kykWAN!008"/> -->
+	    <property name="url" value="jdbc:mysql://localhost:3306/portfolio?characterEncoding=UTF-8"/>
+	    <property name="username" value="root"/>
+	    <property name="password" value="kykwan!008"/>
+	</bean> 
+	
+	<bean id ="sqlSessionFactory" class = "org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref ="dataSource"/>
+		<property name="configLocation" value="classpath:/main/src/resources/mybatis-config.xml"/>
+		<property name="mapperLocations" value = "classpath:/main/src/resources/mapper/*Mapper.xml"/>
+	</bean>
+	
+	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
+		<constructor-arg name="sqlSessionFactory" ref="sqlSessionFactory" />	
+	</bean>
 	<!-- HikariCP를 사용하기 위한 설정 -->
  	<!-- <bean id="hikariConfig" class="com.zaxxer.hikari.HikariConfig">
 		<property name="driverClassName" value="net.sf.log4jdbc.sql.jdbcapi.DriverSpy" />
