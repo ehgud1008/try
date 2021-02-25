@@ -38,7 +38,7 @@
 		<form action="/member/login" method="post">
 			<div class = "inputArea">
 				<label>ID</label><input type="text" class = "input_id" name = "input_id" placeholder="아이디를 입력하세요"><br>
-				<label>PW</label><input type="text" class = "input_pw" name = "input_pw" placeholder="비밀번호를 입력하세요"><br>
+				<label>PW</label><input type="password" class = "input_pw" name = "input_pw" placeholder="비밀번호를 입력하세요"><br>
 				<input type="submit" value = "로그인">
 			</div>
 		</form>
