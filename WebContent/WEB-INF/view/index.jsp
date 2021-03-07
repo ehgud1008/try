@@ -47,21 +47,17 @@
 			</div>
 			<div>
 				<a id = "kakao" href="https://kauth.kakao.com/oauth/authorize?client_id=9b0e96d311c214cff6e6197588843451&redirect_uri=http://localhost:9090/member/kakaoLogin&response_type=code">
+					<img alt="" src="//k.kakaocdn.net/14/dn/btqCn0WEmI3/nijroPfbpCa4at5EIsjyf0/o.jpg">
             	</a>
 			</div>
 		</form>
 	</div>
-	
 	<script type="text/javascript">
 		// SDK를 초기화 합니다. 사용할 앱의 JavaScript 키를 설정해 주세요.
 		Kakao.init('de00d0c0b69d7a76c48050b4187f07fa');
 	 
 	    // SDK 초기화 여부를 판단합니다.
 	    console.log("SDK 초기화 상태 : " + Kakao.isInitialized());
-	    
-	    Kakao.Auth.createLoginButton({
-	    	container: '#kakao'
-	    })
 	</script>
 </body>
 </html>
