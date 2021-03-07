@@ -1,5 +1,8 @@
 package main.src.java.controller;
 
+import java.io.IOException;
+import java.util.HashMap;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -11,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import main.src.java.service.MemberService;
+import main.src.java.util.KakaoConnection;
 
 @Controller
 @RequestMapping("/member/*")
@@ -45,10 +49,10 @@ public class MemberController {
 	}
 	
 	@RequestMapping("/kakaoLogin")
-	public String kakaoLogin(@RequestParam("code") String code) {
+	public String kakaoLogin(@RequestParam("code") String code) throws IOException {
 		System.out.println("Ä«Ä«¿À code = " + code);
-		
-		
+		String access_token = kakao.getAccessToken(code);
+		HashMap<String, Object> userInfo = kakao.getUserInfo(access_token);
 		return "main/main";
 	}
 	
