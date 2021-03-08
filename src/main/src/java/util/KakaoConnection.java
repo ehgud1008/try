@@ -71,10 +71,10 @@ public class KakaoConnection {
 		}catch (Exception e) {
 			e.printStackTrace();
 		}
-		return access_token;
+		return refresh_token;
 	}
 	public HashMap<String, Object> getUserInfo(String access_token) throws IOException {
-		URL url = new URL(KAKAOURL);
+		URL url = new URL(KAKAOGETUSERURL);
 		HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 		
 		conn.setRequestMethod("POST");
