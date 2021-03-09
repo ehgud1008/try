@@ -53,6 +53,7 @@ public class MemberController {
 		System.out.println("Ä«Ä«¿À code = " + code);
 		String access_token = kakao.getAccessToken(code);
 		HashMap<String, Object> userInfo = kakao.getUserInfo(access_token);
+		System.out.println(userInfo);
 		return "main/main";
 	}
 	

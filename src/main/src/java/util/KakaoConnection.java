@@ -27,7 +27,7 @@ public class KakaoConnection {
 	private String GRANT_TYPE = "authorization_code";
 	private String CLIENT_SECRET = "pFKIzDE5f9onmE5bdyBL9oiwaD3QGxnz";
 	private String KAKAOURL= "https://kauth.kakao.com/oauth/token";
-	private String KAKAOGETUSERURL = "https://kauth.kakao.com/v2/user/me";
+	private String KAKAOGETUSERURL = "https://kapi.kakao.com/v2/user/me";
 	
 	public String getAccessToken(String code) {
 		String access_token = "";
@@ -71,25 +71,61 @@ public class KakaoConnection {
 		}catch (Exception e) {
 			e.printStackTrace();
 		}
-		return refresh_token;
+		return access_token;
 	}
 	public HashMap<String, Object> getUserInfo(String access_token) throws IOException {
-		URL url = new URL(KAKAOGETUSERURL);
-		HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+		HashMap<String, Object> userInfo = new HashMap<String, Object>();
+		try {
+			URL url = new URL(KAKAOGETUSERURL);
+			HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+			conn.setRequestMethod("POST");
+			conn.setRequestProperty("Authorization", "Bearer " + access_token);
+			int response = conn.getResponseCode();
+			System.out.println("User Info State: " + response);
+			
+			BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream(), "UTF-8"));
+			String line = "";
+			String result = "";
+	
+			while ((line = br.readLine()) != null) {
+				result += line;
+			}
+			JsonElement ele = JsonParser.parseString(result);
+			JsonObject properties = (JsonObject) ele.getAsJsonObject().get("properties");
+			JsonObject kakao_account = ele.getAsJsonObject().get("kakao_account").getAsJsonObject();
+			//System.out.println("kakao_account = " + kakao_account);
+			
+			String nickname = properties.getAsJsonObject().get("nickname").getAsString();
+			String email = kakao_account.getAsJsonObject().get("email").getAsString();
+			//String email = properties.getAsJsonObject().get("email").getAsString();
+			System.out.println("닉네임 = " + nickname);
+			System.out.println("이메일 = " + email);
+			userInfo.put("nickname", nickname);
+			userInfo.put("email", email);
+		}catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
 		
-		conn.setRequestMethod("POST");
-		conn.setRequestProperty("Authorization", "Bearer " + access_token);
-        System.out.println("Authorization:" + "Bearer " + access_token);
-        int response = conn.getResponseCode();
-		System.out.println("사용자정보 통신 상태 : " + response);
-		String responseMsg = conn.getResponseMessage();
-        System.out.println("responseCode : " + response);
-        System.out.println("responseMsg : " + responseMsg);
-        
-        BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
-        
-		return null;
+		
+		
+		
+		//System.out.println("이메일 = " + email);
+		return userInfo;	
 	}
+	   
+	//   [
+//	    id=1653030088, 
+	//   connected_at="2021-03-09T07:02:27Z", 
+	//   properties={"nickname":"김도형","profile_image":"http://k.kakaocdn.net/dn/cUhG0T/btqJoLd0h0n/XEFKGVSTNnggzmGQH9RzU0/img_640x640.jpg","thumbnail_image":"http://k.kakaocdn.net/dn/cUhG0T/btqJoLd0h0n/XEFKGVSTNnggzmGQH9RzU0/img_110x110.jpg"}, 
+	//   kakao_account={
+//	               "profile_needs_agreement":false,
+//	               "profile":{
+//	                     "nickname":"김도형",
+//	                     "thumbnail_image_url":"http://k.kakaocdn.net/dn/cUhG0T/btqJoLd0h0n/XEFKGVSTNnggzmGQH9RzU0/img_110x110.jpg",
+//	                     "profile_image_url":"http://k.kakaocdn.net/dn/cUhG0T/btqJoLd0h0n/XEFKGVSTNnggzmGQH9RzU0/img_640x640.jpg"},
+//	               "has_email":true,"email_needs_agreement":false,"is_email_valid":true,"is_email_verified":true,"email":"ehgud1008@naver.com"}]
+	//   
 	
 	
 	
