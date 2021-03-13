@@ -13,9 +13,6 @@
 <!-- 합쳐지고 최소화된 최신 자바스크립트 -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 
-<!-- 카카오가 제공하는 JavaScript SDK 다운로드 경로 -->
-<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
-
 <title>로그인</title>
 <style>
 	div{
@@ -52,12 +49,6 @@
 			</div>
 		</form>
 	</div>
-	<script type="text/javascript">
-		// SDK를 초기화 합니다. 사용할 앱의 JavaScript 키를 설정해 주세요.
-		Kakao.init('de00d0c0b69d7a76c48050b4187f07fa');
-	 
-	    // SDK 초기화 여부를 판단합니다.
-	    console.log("SDK 초기화 상태 : " + Kakao.isInitialized());
-	</script>
+	
 </body>
 </html>

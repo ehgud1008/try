@@ -26,8 +26,14 @@ public class MemberController {
 	@Autowired
 	private KakaoConnection	kakao;
 	
-	@PostMapping("/login")
+	@GetMapping("/login")
 	public String login(HttpServletRequest request, HttpServletResponse response) {
+		
+		
+		return "member/login";
+	}
+	@PostMapping("/login")
+	public String userLogin(HttpServletRequest request, HttpServletResponse response) {
 		String id = "";
 		String pw = "";
 		try {

@@ -4,9 +4,6 @@
 	<head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<meta name="description" content="">
-	<meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
-	<meta name="generator" content="Hugo 0.80.0">
 	<title>Oiloftrop</title>
 	
 	<link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/album/">
@@ -113,19 +110,45 @@
 	</head>
 	<body>
 		<header>
-			<div class="navbar navbar-dark bg-dark shadow-sm">
+			<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 				<div class="container">
+					<a class="navbar-brand" href="#">Oiloftrop</a>
+					<!-- <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarsExample07" aria-controls="navbarsExample07" aria-expanded="false" aria-label="Toggle navigation">
+						<span class="navbar-toggler-icon"></span>
+				    </button> -->
+				    <div class="navbar-collapse collapse" id="navbarsExample07" style="">
+						<ul class="navbar-nav mr-auto">
+							<li class="nav-item">
+								<a class="nav-link active" aria-current="page" href="#">Home<span class="sr-only">(current)</span></a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="#">Skills</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="#">Contact</a>
+							</li>
+						</ul>
+						<a class="nav-link" href="/member/login"><img src="/resources/images/member/user_logo.png"  style ="width: 5%;"></a>
+					</div>
+				</div>
+			</nav>
+			
+			<!-- <div class="navbar navbar-dark bg-dark shadow-sm">
+				<div class="container" style = "width: 8%;margin-right:0;">
 					<a href="#" class="navbar-brand d-flex align-items-center">
 						<strong>oiloftroP</strong>
 					</a>
+				</div>
+				<div class="container">
+					<a class="nav-link" href="/member/login"><img src="/resources/images/member/user_logo.png"  style ="width: 5%;"></a>
 					<nav class="nav nav-masthead justify-content-center float-md-end">
 						<a class="nav-link active" aria-current="page" href="#">Home</a>
 						<a class="nav-link" href="#">Skills</a>
 						<a class="nav-link" href="#">Contact</a>
 					</nav>
 				</div>
-			</div>
-		</header>
+			</div> -->
+		</header> 
 		<main>
 			<section class="top_section py-5 text-center container">
 				<div class="row py-lg-5">
